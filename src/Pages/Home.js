@@ -60,6 +60,18 @@ function Home() {
   // 첫 3개 프로젝트만 표시
   const featuredProjects = projectDetails.slice(0, 3);
 
+  // 주요 스킬만 선택 (아이콘과 함께)
+  const mainSkills = [
+    { name: "React", icon: techStackDetails.react },
+    { name: "JavaScript", icon: techStackDetails.js },
+    { name: "HTML/CSS", icon: techStackDetails.html },
+    { name: "Node.js", icon: techStackDetails.js },
+    { name: "Git", icon: techStackDetails.git },
+    { name: "Tailwind", icon: techStackDetails.tailwind },
+    { name: "Redux", icon: techStackDetails.redux },
+    { name: "VS Code", icon: techStackDetails.vscode },
+  ];
+
   return (
     <main className="container mx-auto max-width">
       {/* Hero Section */}
@@ -162,17 +174,20 @@ function Home() {
           Technologies I've been working with recently
         </p>
         
-        <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 items-center gap-8">
-          {Object.entries(techStackDetails).slice(0, 8).map(([key, icon]) => (
-            <div key={key} className="flex flex-col items-center">
-              <img 
-                src={icon} 
-                title={key.charAt(0).toUpperCase() + key.slice(1)} 
-                alt={key.charAt(0).toUpperCase() + key.slice(1)} 
-                className="w-12 h-12 md:w-16 md:h-16 hover:scale-110 transition-transform duration-200"
+        {/* 주요 스킬 태그들 */}
+        <div className="flex flex-wrap gap-3 justify-center">
+          {mainSkills.map((skill, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-dark-card rounded-full border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105"
+            >
+              <img
+                src={skill.icon}
+                alt={skill.name}
+                className="w-4 h-4"
               />
-              <span className="text-xs text-content mt-2 font-medium text-center">
-                {key.charAt(0).toUpperCase() + key.slice(1)}
+              <span className="text-sm font-medium text-content">
+                {skill.name}
               </span>
             </div>
           ))}
