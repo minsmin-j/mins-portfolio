@@ -1,103 +1,39 @@
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
+import React from "react";
+import { Link } from "react-router-dom";
+import Project from "../Components/Project";
 import { personalDetails, projectDetails, techStackDetails } from "../Details";
 
 function Home() {
-  const { name, tagline, img } = personalDetails;
-  const h11 = useRef();
-  const h12 = useRef();
-  const h13 = useRef();
-  const myimageref = useRef();
+  const { name, img } = personalDetails;
   
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.from(
-      h11.current,
-      {
-        x: "-100%",
-        delay: 0.8,
-        opacity: 0,
-        duration: 2,
-        ease: "Power3.easeOut",
-      },
-      "<"
-    )
-      .from(
-        h12.current,
-        {
-          x: "-100%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        h13.current,
-        {
-          x: "-100%",
-          delay: 0.1,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      )
-      .from(
-        myimageref.current,
-        {
-          x: "200%",
-          delay: 0.5,
-          opacity: 0,
-          duration: 2,
-          ease: "Power3.easeOut",
-        },
-        "<"
-      );
-  }, []);
-
   // 첫 3개 프로젝트만 표시
   const featuredProjects = projectDetails.slice(0, 3);
 
   // 주요 스킬만 선택 (아이콘과 함께)
   const mainSkills = [
-    { name: "React", icon: techStackDetails.react },
-    { name: "JavaScript", icon: techStackDetails.js },
-    { name: "HTML/CSS", icon: techStackDetails.html },
-    { name: "Node.js", icon: techStackDetails.js },
+    { name: "Java", icon: techStackDetails.java },
+    { name: "Spring Boot", icon: techStackDetails.springboot },
+    { name: "MySQL", icon: techStackDetails.mysql },
     { name: "Git", icon: techStackDetails.git },
-    { name: "Tailwind", icon: techStackDetails.tailwind },
-    { name: "Redux", icon: techStackDetails.redux },
-    { name: "VS Code", icon: techStackDetails.vscode },
+    { name: "AWS", icon: techStackDetails.aws },
+    { name: "HTML/CSS", icon: techStackDetails.html },
+    { name: "Cursor", icon: techStackDetails.cursor },
+    { name: "Notion", icon: techStackDetails.notion },
   ];
 
   return (
-    <main className="container mx-auto max-width">
+    <main className="container mx-auto max-width pt-24">
       {/* Hero Section */}
       <section className="section md:flex justify-between items-center">
         <div>
           <h1
-            ref={h11}
-            className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold"
+            className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold animate-fade-in whitespace-nowrap"
           >
-            Hi,👋<br></br>My Name is<br></br>
+            안녕하세요,<br></br>백엔드 개발자 <Link to="/about" className="bg-clip-text bg-gradient text-transparent hover:underline cursor-pointer">{name}</Link>입니다.
           </h1>
-          <h1
-            ref={h12}
-            className="text-2xl bg-clip-text bg-gradient text-transparent md:text-4xl xl:text-5xl xl:leading-tight font-bold"
-          >
-            {name}
-          </h1>
-          <h2
-            ref={h13}
-            className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold"
-          >
-            {tagline}
-          </h2>
         </div>
         <div className="mt-5 md:mt-0">
-          <img ref={myimageref} className="w-1/2 md:ml-auto" src={img} alt="Pavan MG" />
+          <img className="w-64 h-80 md:ml-auto object-cover rounded-lg border-4 border-gray-200 dark:border-gray-600 shadow-lg" src={img} alt="Profile" />
         </div>
       </section>
 
@@ -107,61 +43,28 @@ function Home() {
           Featured Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project, index) => (
-            <div key={index} className="bg-white dark:bg-dark-card rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-dark-heading dark:text-light-heading mb-3">
-                  {project.title}
-                </h3>
-                <p className="text-content mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.techstack.split(', ').map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-sm rounded-full text-content"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-3">
-                  <a 
-                    href={project.previewLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                  >
-                    Live Demo
-                  </a>
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-content rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
+          {featuredProjects.map((project) => (
+            <Project
+              key={project.id}
+              id={project.id}
+              title={project.title}
+              image={project.image}
+              description={project.description}
+              techstack={project.techstack}
+              previewLink={project.previewLink}
+              githubLink={project.githubLink}
+            />
           ))}
         </div>
         
         {/* View More Button */}
         <div className="text-center mt-12">
-          <a 
-            href="/projects" 
-            className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          <Link 
+            to="/projects" 
+            className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-medium rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
           >
             View All Projects
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -195,12 +98,12 @@ function Home() {
         
         {/* View More Skills Button */}
         <div className="text-center mt-12">
-          <a 
-            href="/technologies" 
+          <Link 
+            to="/technologies" 
             className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-medium rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
           >
             View All Skills
-          </a>
+          </Link>
         </div>
       </section>
     </main>

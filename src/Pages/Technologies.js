@@ -19,60 +19,57 @@ function Technologies() {
     figma,
   } = techStackDetails;
 
-  // 기술 스택을 카테고리별로 그룹핑
+  // 기술 스택을 카테고리별로 그룹핑 (0-6단계)
   const SKILLS = [
+    {
+      title: "Languages",
+      color: "emerald",
+      items: [
+        { name: "Java", proficiency: 6 },
+        { name: "C", proficiency: 4 },
+        { name: "C++", proficiency: 2 },
+        { name: "Python", proficiency: 3 },
+        { name: "PHP", proficiency: 3 },
+      ],
+    },
+    {
+      title: "Backend & Database",
+      color: "indigo",
+      items: [
+        { name: "Spring Boot", proficiency: 6 },
+        { name: "MySQL", proficiency: 6 },
+        { name: "Redis", proficiency: 2 },
+      ],
+    },
     {
       title: "Frontend",
       color: "sky",
       items: [
-        { name: "HTML", icon: html },
-        { name: "CSS", icon: css },
-        { name: "JavaScript", icon: js },
-        { name: "React", icon: react },
-        { name: "Redux", icon: redux },
-        { name: "Tailwind CSS", icon: tailwind },
-        { name: "Bootstrap", icon: bootstrap },
-        { name: "SASS", icon: sass },
+        { name: "HTML", proficiency: 4 },
+        { name: "CSS", proficiency: 4 },
+        { name: "JavaScript", proficiency: 4 },
+        { name: "React", proficiency: 2 },
       ],
     },
     {
-      title: "Backend",
-      color: "indigo",
-      items: [
-        { name: "Node.js", icon: js },
-        { name: "Express", icon: js },
-        { name: "Python", icon: js },
-        { name: "Django", icon: js },
-      ],
-    },
-    {
-      title: "Database",
-      color: "emerald",
-      items: [
-        { name: "MySQL", icon: js },
-        { name: "PostgreSQL", icon: js },
-        { name: "MongoDB", icon: js },
-        { name: "Redis", icon: js },
-      ],
-    },
-    {
-      title: "Infrastructure",
+      title: "DevOps",
       color: "amber",
       items: [
-        { name: "AWS", icon: js },
-        { name: "Docker", icon: js },
-        { name: "Git", icon: git },
-        { name: "GitHub", icon: github },
+        { name: "AWS", proficiency: 4 },
+        { name: "Docker", proficiency: 3 },
+        { name: "Git/GitHub", proficiency: 5 },
       ],
     },
     {
       title: "Tools",
       color: "rose",
       items: [
-        { name: "VS Code", icon: vscode },
-        { name: "NPM", icon: npm },
-        { name: "Postman", icon: postman },
-        { name: "Figma", icon: figma },
+        { name: "Postman", proficiency: 4 },
+        { name: "Slack", proficiency: 4 },
+        { name: "Jira", proficiency: 3 },
+        { name: "Notion", proficiency: 5 },
+        { name: "Cursor", proficiency: 4 },
+        { name: "Figma", proficiency: 2 },
       ],
     },
   ];
@@ -118,15 +115,61 @@ function Technologies() {
       text: "text-slate-700 dark:text-slate-300",
       accent: "from-rose-200 to-pink-200",
       title: "text-slate-900 dark:text-slate-100",
-    },
+    }
   };
 
-  function SkillBadge({ label, icon, color = "indigo" }) {
+  function ProficiencyBar({ proficiency }) {
+    const getProficiencyBar = (level) => {
+      let width, color;
+      switch (level) {
+        case 6: // Expert
+          width = "100%";
+          color = "bg-blue-700";
+          break;
+        case 5: // Advanced+
+          width = "83%";
+          color = "bg-blue-600";
+          break;
+        case 4: // Advanced
+          width = "67%";
+          color = "bg-blue-500";
+          break;
+        case 3: // Intermediate+
+          width = "50%";
+          color = "bg-blue-400";
+          break;
+        case 2: // Intermediate
+          width = "33%";
+          color = "bg-blue-300";
+          break;
+        case 1: // Beginner
+          width = "17%";
+          color = "bg-blue-200";
+          break;
+        default: // 0 - No experience
+          width = "0%";
+          color = "bg-gray-200";
+      }
+
+      return (
+        <div className="w-16 h-1.5 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+          <div 
+            className={`h-full ${color} rounded-full transition-all duration-300`}
+            style={{ width }}
+          ></div>
+        </div>
+      );
+    };
+
+    return getProficiencyBar(proficiency);
+  }
+
+  function SkillBadge({ label, proficiency, color = "indigo" }) {
     const c = COLOR[color];
     return (
       <span
         className={[
-          "inline-flex items-center gap-1.5 rounded-xl border bg-white/80 dark:bg-slate-900/50 px-3 py-1 text-sm",
+          "inline-flex items-center gap-2 rounded-xl border bg-white/80 dark:bg-slate-900/50 px-3 py-1 text-sm",
           "shadow-sm backdrop-blur",
           "border-slate-200 dark:border-slate-700",
           "text-slate-700 dark:text-slate-300",
@@ -134,8 +177,8 @@ function Technologies() {
           "ring-1 hover:ring-2 transition hover:bg-white/90 dark:hover:bg-slate-900/60",
         ].join(" ")}
       >
-        <img src={icon} alt={label} className="h-3 w-3" />
         {label}
+        <ProficiencyBar proficiency={proficiency} />
       </span>
     );
   }
@@ -150,7 +193,7 @@ function Technologies() {
         <h3 className="mb-4 text-xl font-semibold text-slate-900 dark:text-slate-100">{title}</h3>
         <div className="flex flex-wrap gap-2">
           {items.map((item) => (
-            <SkillBadge key={item.name} label={item.name} icon={item.icon} color={color} />
+            <SkillBadge key={item.name} label={item.name} proficiency={item.proficiency} color={color} />
           ))}
         </div>
       </div>
@@ -158,13 +201,13 @@ function Technologies() {
   }
 
   return (
-    <main className="container mx-auto max-width pt-10 pb-20">
+    <main className="container mx-auto max-width pt-24 pb-20">
       <section>
         <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold">
           Tech Stack
         </h1>
         <p className="text-content py-2 lg:max-w-3xl">
-          Technologies I've been working with recently
+          경험이 있는 기술을 성취도별로 정리했습니다.
         </p>
       </section>
 
