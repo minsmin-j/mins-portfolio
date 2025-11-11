@@ -203,10 +203,10 @@ function Technologies() {
   return (
     <main className="container mx-auto max-width pt-24 pb-20">
       <section>
-        <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold">
+        <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold  text-center">
           Tech Stack
         </h1>
-        <p className="text-content py-2 lg:max-w-3xl">
+        <p className="text-content py-8 lg:max-w-3xl mx-auto text-center">
           경험이 있는 기술을 성취도별로 정리했습니다.
         </p>
       </section>

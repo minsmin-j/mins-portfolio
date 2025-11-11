@@ -9,15 +9,15 @@ function About() {
     <main className="container mx-auto max-width pt-24 pb-20 ">
       
       <section>
-        <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold">
+        <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold text-center">
           About Me
         </h1>
-        <p className="text-content py-8 lg:max-w-3xl">{personalDetails.about}</p>
+        <p className="text-content py-8 lg:max-w-3xl mx-auto text-center">{personalDetails.about}</p>
         
         {/* Contact Information Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 max-w-4xl mx-auto">
           {/* Phone Contact Card */}
-          <div className="bg-gray-50 dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
+          <div className="dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-start gap-3">
               <svg
                 className="w-6 h-6 text-dark-heading dark:text-light-heading mt-1 flex-shrink-0"
@@ -41,7 +41,7 @@ function About() {
           </div>
           
           {/* Email Contact Card */}
-          <div className="bg-gray-50 dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
+          <div className="dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-start gap-3">
               <svg
                 className="w-6 h-6 text-dark-heading dark:text-light-heading mt-1 flex-shrink-0"
@@ -57,15 +57,15 @@ function About() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <div className="flex-1">
+              <div className="flex-1 min-w-0">
                 <p className="text-dark-heading dark:text-light-heading font-semibold mb-1 text-sm">이메일</p>
-                <p className="text-content text-sm break-words">{email}</p>
+                <p className="text-content text-sm break-all whitespace-normal overflow-hidden">{email}</p>
               </div>
             </div>
           </div>
           
           {/* Education Card */}
-          <div className="bg-gray-50 dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
+          <div className="dark:bg-dark-card rounded-lg border border-gray-200 dark:border-gray-700 p-4 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-start gap-3">
               <svg
                 className="w-6 h-6 text-dark-heading dark:text-light-heading mt-1 flex-shrink-0"
@@ -90,25 +90,32 @@ function About() {
         </div>
       </section>
       
-      
+      {/* Experience Timeline */}
       <section className="pt-10">
+        <h1 className="text-3xl md:text-4xl text-dark-heading dark:text-light-heading font-bold mb-3">Experience Timeline</h1>
+        <div className="h-1 w-16 bg-indigo-400 rounded mb-8"></div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Work Experience - Left Column */}
           <div>
-            <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold mb-6">
+            <h2 className="flex items-center text-xl md:text-2xl text-dark-heading dark:text-light-heading font-semibold mb-6">
+              <span className="mr-2" role="img" aria-label="work">💼</span>
               Work Experience
-            </h1>
-            <div className="space-y-4">
+            </h2>
+            <div className="relative space-y-6 pl-0.5">
+              <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-indigo-300"></div>
               {React.Children.toArray(
                 workDetails.map(({ Position, Company, Location, Type, Duration }) => (
-                  <div className="bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                    <Work
-                      position={Position}
-                      company={Company}
-                      location={Location}
-                      type={Duration}
-                      //duration={Type}
-                    />
+                  <div className="relative pl-6">
+                    <span className="absolute left-2 -translate-x-1/2 top-6 w-4 h-4 rounded-full border-4 border-indigo-400 bg-white transform"></span>
+                    <div className="bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                      <Work
+                        position={Position}
+                        company={Company}
+                        location={Location}
+                        type={Duration}
+                        //duration={Type}
+                      />
+                    </div>
                   </div>
                 ))
               )}
@@ -117,20 +124,25 @@ function About() {
           
           {/* Education - Right Column */}
           <div>
-            <h1 className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold mb-6">
-              Experience
-            </h1>
-            <div className="space-y-4">
+            <h2 className="flex items-center text-xl md:text-2xl text-dark-heading dark:text-light-heading font-semibold mb-6">
+              <span className="mr-2" role="img" aria-label="education">🎓</span>
+              Activities & Education
+            </h2>
+            <div className="relative space-y-6 pl-0.5">
+              <div className="absolute left-2 top-0 bottom-0 w-0.5 bg-indigo-300"></div>
               {React.Children.toArray(
                 eduDetails.map(({ Position, Company, Location, Type, Duration }) => (
-                  <div className="bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                    <Work
-                      position={Position}
-                      company={Company}
-                      location={Location}
-                      type={Duration}
-                      //duration={Type}
-                    />
+                  <div className="relative pl-6">
+                    <span className="absolute left-2 -translate-x-1/2 top-6 w-4 h-4 rounded-full border-4 border-indigo-400 bg-white transform"></span>
+                    <div className="bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                      <Work
+                        position={Position}
+                        company={Company}
+                        location={Location}
+                        type={Duration}
+                        //duration={Type}
+                      />
+                    </div>
                   </div>
                 ))
               )}
