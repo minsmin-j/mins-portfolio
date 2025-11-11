@@ -6,8 +6,8 @@ import { personalDetails, projectDetails, techStackDetails } from "../Details";
 function Home() {
   const { name, img } = personalDetails;
   
-  // 첫 3개 프로젝트만 표시
-  const featuredProjects = projectDetails.slice(0, 3);
+  // 1, 2, 5번 프로젝트만 표시
+  const featuredProjects = projectDetails.filter(project => [1, 2, 5].includes(project.id));
 
   // 주요 스킬만 선택 (아이콘과 함께)
   const mainSkills = [
@@ -82,7 +82,7 @@ function Home() {
           {mainSkills.map((skill, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-dark-card rounded-full border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105"
+              className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-dark-card rounded-xl border border-gray-200 dark:border-gray-600 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-105"
             >
               <img
                 src={skill.icon}

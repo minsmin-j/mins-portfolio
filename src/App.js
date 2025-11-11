@@ -8,8 +8,9 @@ import Projects from "./Pages/Projects";
 import Technologies from "./Pages/Technologies";
 import ProjectDetail from "./Pages/ProjectDetail";
 function App() {
+  const basename = process.env.NODE_ENV === 'production' ? '/mins-portfolio' : '';
   return (
-    <Router>
+    <Router basename={basename}>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
