@@ -24,13 +24,26 @@ function Home() {
   return (
     <main className="container mx-auto max-width pt-24">
       {/* Hero Section */}
-      <section className="section md:flex justify-between items-center">
-        <div>
-          <h1
-            className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold animate-fade-in whitespace-nowrap"
-          >
-            안녕하세요,<br></br>백엔드 개발자 <Link to="/about" className="bg-clip-text bg-gradient text-transparent hover:underline cursor-pointer">{name}</Link>입니다.
-          </h1>
+      <section className="section md:flex justify-between md:items-center">
+        <div className="flex flex-col md:h-80">
+          <div className="flex-1 flex items-center">
+            <h1
+              className="text-2xl text-dark-heading dark:text-light-heading md:text-4xl xl:text-5xl xl:leading-tight font-bold animate-fade-in whitespace-nowrap"
+            >
+              안녕하세요,<br></br>백엔드 개발자 <Link to="/about" className="bg-clip-text bg-gradient text-transparent hover:underline cursor-pointer">{name}</Link>입니다.
+            </h1>
+          </div>
+          <div className="mt-6 md:mt-0">
+            <Link 
+              to="/about" 
+              className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-medium rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
+            >
+              View About
+              <svg className="w-4 h-4 inline-block ml-2 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </Link>
+          </div>
         </div>
         <div className="mt-5 md:mt-0">
           <img className="w-64 h-80 md:ml-auto object-cover rounded-lg border-4 border-gray-200 dark:border-gray-600 shadow-lg" src={img} alt="Profile" />

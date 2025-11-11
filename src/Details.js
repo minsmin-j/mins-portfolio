@@ -48,7 +48,7 @@ export const personalDetails = {
   img: profile,
   about: `안녕하세요. 기술로 비즈니스 가치를 만드는 백엔드 개발자 이정민입니다.\n
   단순히 기능을 구현하는 것을 넘어, 매출 증대와 운영 효율성 향상에 기여하는 시스템을 설계합니다.
-  Spring Boot 기반 백엔드 개발 경험을 바탕으로 높은 성능과 효율을 모두 잡는 솔루션을 제공합니다.`,
+  Spring Boot 기반 백엔드 개발 경험을 바탕으로 높은 성능과 효율을 모두 잡는 솔루션을 제공하고 싶습니다.`,
 };
 
 // Enter your Social Media URLs here
